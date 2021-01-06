@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost:3306/merchant-portal?serverTimezone=IST"
+    username: "zokudo"
+    password: "HMGroup@12345"
+
+# hibernate configurations
+spring.jpa:
+  show-sql: "true"
+  hibernate:
+    ddl-auto: "update"
+
+server.port: "8090"
+
+spring.jpa.properties.hibernate.dialet: "org.hibernate.dialect.MySQL5Dialect"
+
+# thymeleaf configurations
+spring.thymeleaf:
+  mode: LEGACYHTML5
+  cache: false
+  prefix: classpath:/templates
+
+# Basic base64encode applicationLevelUser:@#$FADS@@#$AF
+merchant_service_api_header_key: "Basic YXBwbGljYXRpb25MZXZlbFVzZXI6QCMkRkFEU0BAIyRBRg=="
+merchant_host: "http://52.183.133.3:8091"

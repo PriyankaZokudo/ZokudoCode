@@ -1,0 +1,40 @@
+<head th:fragment="head">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/@fortawesome/fontawesome-free/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/assets/select2/css/select2.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/components.css}">
+    <script th:inline="javascript">
+        var AuthHeader = /*[[${merchant_service_api_header_key}]]*/; // "Basic YXBwbGljYXRpb25MZXZlbFVzZXI6QCMkRkFEU0BAIyRBRg==";
+        var MerchantHost = /*[[${merchant_host}]]*/; // "http://localhost:8091";
+    </script>
+</head>
+
+<footer th:fragment="foot">
+    <!-- Bootstrap core JavaScript-->
+    <script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.nicescroll.min.js}"></script>
+    <script th:src="@{/assets/js/stisla.js}"></script>
+    <script th:src="@{/assets/js/scripts.js}"></script>
+    <script th:src="@{/assets/js/custom.js}"></script>
+</footer>
+
+<chart-js th:fragment="chart-js"></chart-js>
+
+<!--<datatable-js th:fragment="datatable" >-->
+<!--    <script th:th:src="@{/js/common/datatables/jquery.dataTables.min.js}"></script>-->
+<!--    <script th:th:src="@{/js/common/datatables/dataTables.bootstrap4.min.js}"></script>-->
+<!--</datatable-js>-->
+
+<footer-strip th:fragment="footer-strip" class="sticky-footer bg-white">
+    <div class="simple-footer">
+        Copyright &copy; Zokudo.com <script>document.write(new Date().getFullYear())</script>
+    </div>
+</footer-strip>
+
+<!--<form-valiation th:fragment="form-validation">-->
+<!--    <script th:src="@{/assets/js/validation/jquery.validate.min.js}"></script>-->
+<!--    <script th:src="@{/assets/js/validation/additional-methods.min.js}"></script>-->
+<!--</form-valiation>-->

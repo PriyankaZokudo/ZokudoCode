@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/common/common :: head"> </head>
+
+<link rel="stylesheet" th:href="@{/assets/bootstrap-daterangepicker/daterangepicker.css}">
+
+<body>
+
+<div id="circle" class="loading">
+    <div class="loader loading">
+
+    </div>
+</div>
+
+<div id="app">
+    <div class="main-wrapper">
+        <div class="navbar-bg"></div>
+        <nav th:replace="/common/usernav :: nav"></nav>
+        <div class="main-sidebar">
+            <aside th:replace="/common/usernav :: aside"> </aside>
+        </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab2" data-toggle="tab" href="#data-analytics" role="tab" aria-controls="home" aria-selected="true"><strong>Data Analytics</strong></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab2" data-toggle="tab" href="#predictive-analytics" role="tab" aria-controls="profile" aria-selected="false"><strong>Predictive Analytics</strong></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-tab2" data-toggle="tab" href="#predictive-publish" role="tab" aria-controls="contact" aria-selected="false"><strong>Predictive Analytics With Publish</strong></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" th:href="@{/merchant/report/transaction-report}"><strong>Transaction Report</strong></a>
+                                        <!--<a class="nav-link" id="transaction-tab2" data-toggle="tab" href="@{/merchant/report/transaction-report}" role="tab" aria-controls="transaction" aria-selected="false"><strong>Transaction Report</strong></a>-->
+                                    </li>
+                                </ul>
+                                <div class="tab-content tab-bordered" id="myTab3Content">
+                                    <div class="tab-pane fade show active  media" id="data-analytics" role="tabpanel" aria-labelledby="home-tab2">
+                                        <form class="needs-validation" novalidate="">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">Terminal IDs*</label>
+                                                <div class="col-sm-9">
+                                                    <select name="terminal_ids" required class="form-control select2" id="tids" multiple="multiple">
+                                                        <option value="1020888">1020888</option>
+                                                        <option value="1020">1020</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select at least one terminal id.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">Transaction Channels*</label>
+                                                <div class="col-sm-9">
+                                                    <select name="terminal_channels" required class="form-control select2" multiple="">
+                                                        <option value="POS">POS</option>
+                                                        <option value="POS contactless">POS contactless</option>
+                                                        <option value="ECOM">ECOM</option>
+<!--                                                        <option value="atm">atm</option>-->
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select at least one transaction channel.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">Time Period*</label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                <i class="fas fa-calendar"></i>
+                                                            </div>
+                                                        </div>
+                                                        <input name="date_range" required type="text" class="form-control daterange-cus">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please choose the date range.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">Location*</label>
+                                                <div class="col-sm-9">
+                                                    <select name="location" required class="form-control select2" multiple="">
+                                                        <option value="Delhi">Delhi</option>
+                                                        <option value="Mumbai">Mumbai</option>
+                                                        <option value="Kolkata">Kolkata</option>
+                                                        <option value="Chennai">Chennai</option>
+                                                        <option value="Bangaluru">Bangaluru</option>
+                                                        <option value="Ahmedabad">Ahmedabad</option>
+                                                        <option value="Hyderabad">Hyderabad</option>
+                                                        <option value="Pune">Pune</option>
+                                                        <option value="Surat">Surat</option>
+                                                        <option value="Jaipur">Jaipur</option>
+                                                        <option value="Nagpur">Nagpur</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select at least one location.
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-sm-3">
+                                                   <label>Latitude</label>
+                                                   <input type="text" id="lat" class="form-control purchase-code" placeholder="0.000000">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                   <label>Longitude</label>
+                                                   <input type="text" id="long" class="form-control purchase-code" placeholder="0.000000">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                  <button type="button" class="btn btn-primary btn-lg mt-4" onclick="getLocation();" >
+                                                  <i class="fa fa-globe" aria-hidden="true"></i>
+                                                   Current Lat/Log</button>
+                                                </div> -->
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">Transaction Status*</label>
+                                                <div class="col-sm-9">
+                                                    <select name="transaction_status" required class="form-control select2" multiple="">
+                                                        <option value="Approved">Approved</option>
+                                                        <option value="Declined">Declined</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select at least one transaction status.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="merchant_id"  th:value="${merchant_id}">
+                                            <input type="hidden" name="mid"  th:value="${mid}">
+                                            <div class="form-group text-center">
+                                                <button type="submit" class="btn btn-success btn-lg" tabindex="4">
+                                                    View Data
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <hr>
+                                        <div class="row" id="result">
+                                            <div class="col-12 col-md-6 col-lg-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4>Data</h4>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <ul class="list-unstyled list-unstyled-border">
+                                                            <li class="media">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input" id="cbx-1" data-id="total_sales" data-name="Total Sales" name="data-radio">
+                                                                    <label class="custom-control-label" for="cbx-1"></label>
+                                                                </div>
+                                                                <div class="media-body d-flex">
+                                                                    <h6 class="media-title w-50">Total Sales</h6>
+                                                                    <div class="badge d-flex w-50">
+                                                                        <i class="fas fa-rupee-sign" style="padding: 3px;"></i>&nbsp;
+                                                                        <h6 class="media-title" id="total_sales"> </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="media">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input" id="cbx-2" data-id="total_transactions" data-name="Total Transactions" name="data-radio">
+                                                                    <label class="custom-control-label" for="cbx-2"></label>
+                                                                </div>
+                                                                <div class="media-body d-flex">
+                                                                    <h6 class="media-title w-50">Total Transactions</h6>
+                                                                    <div class="badge d-flex w-50">
+                                                                        <i class="fas fa-coins" style="padding: 3px;"></i>&nbsp;
+                                                                        <h6 class="media-title" id="total_transactions"> </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="media">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input" id="cbx-3" data-id="transactions_ticket_size" data-name="Transactions Ticket Size" name="data-radio">
+                                                                    <label class="custom-control-label" for="cbx-3"></label>
+                                                                </div>
+                                                                <div class="media-body d-flex">
+                                                                    <h6 class="media-title w-50">Transactions Ticket Size</h6>
+                                                                    <div class="badge d-flex w-50">
+                                                                        <i class="fas fa-ticket-alt" style="padding: 3px;"></i>&nbsp;
+                                                                        <h6 class="media-title" id="transactions_ticket_size">  </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="media">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input" id="cbx-4" data-id="unique_cards" data-name="Unique Cards" name="data-radio">
+                                                                    <label class="custom-control-label" for="cbx-4"></label>
+                                                                </div>
+                                                                <div class="media-body d-flex">
+                                                                    <h6 class="media-title w-50">Unique Cards </h6>
+                                                                    <div class="badge d-flex w-50">
+                                                                        <i class="fas fa-credit-card" style="padding: 3px;"></i>&nbsp;
+                                                                        <h6 class="media-title" id="unique_cards">  </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="media">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input" id="cbx-5" data-id="unique_customers" data-name="Unique Customers" name="data-radio">
+                                                                    <label class="custom-control-label" for="cbx-5"></label>
+                                                                </div>
+                                                                <div class="media-body d-flex">
+                                                                    <h6 class="media-title w-50">Unique Customers </h6>
+                                                                    <div class="badge d-flex w-50">
+                                                                        <i class="fas fa-users" style="padding: 3px;"></i>&nbsp;
+                                                                        <h6 class="media-title" id="unique_customers"> </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="media">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" class="custom-control-input" id="cbx-6" data-id="new_customers" data-name="New Customers" name="data-radio">
+                                                                    <label class="custom-control-label" for="cbx-6"></label>
+                                                                </div>
+                                                                <div class="media-body d-flex">
+                                                                    <h6 class="media-title w-50">New Customers </h6>
+                                                                    <div class="badge d-flex w-50">
+                                                                        <i class="fas fa-users" style="padding: 3px;"></i>&nbsp;
+                                                                        <h6 class="media-title" id="new_customers">  </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6">
+                                                <div class="card" id="graph">
+                                                    <div class="card-header">
+                                                        <h4>Graph</h4>
+                                                    </div>
+                                                    <div class="card-body" id="chartContainer">
+                                                        <canvas id="myChart2"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="predictive-analytics" role="tabpanel" aria-labelledby="profile-tab2">
+                                        <h6>No Data</h6>
+                                    </div>
+                                    <div class="tab-pane fade" id="predictive-publish" role="tabpanel" aria-labelledby="contact-tab2">
+                                        <h6>No Data</h6>
+                                    </div>
+                                    <div class="tab-pane fade" id="transaction-report" role="tabpanel" aria-labelledby="transaction-tab2">
+                                        <div class="form-group text-center">
+                                            <div class="col-md-6">
+                                            <a th:href="@{/merchant/report/transaction-report/export}"
+                                               class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right"><i
+                                                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                                            </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <!--<div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="alert alert-success" role="alert" th:if="${message}" th:utext="${message}"></div>
+                                                    </div>
+                                                </div>-->
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered dataTable" width="100%" cellspacing="0">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>UMRN</th>
+                                                            <th>MID</th>
+                                                            <th>Amount</th>
+                                                            <th>Settlement Date</th>
+                                                            <th>Status</th>
+                                                            <th>Bank IFSC</th>
+                                                            <th>Customer Account Number</th>
+                                                            <th>Destination Account Type</th>
+                                                            <th>Customer Name</th>
+                                                            <th>Scheduled Plan Id</th>
+                                                            <th>Frequency</th>
+                                                            <th>Narration</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr th:each="transaction : ${transactionList}">
+                                                            <td th:text="${transaction.getUmrn()}"></td>
+                                                            <td th:text="${transaction.getMid()}"></td>
+                                                            <td th:text="${transaction.getAmount()}"></td>
+                                                            <td th:text="${transaction.getSettlementDate()}"></td>
+                                                            <td th:text="${transaction.getStatus()}"></td>
+                                                            <td th:text="${transaction.getDestinationBankId()}"></td>
+                                                            <td th:text="${transaction.getCustomerAccountNumber()}"></td>
+                                                            <td th:text="${transaction.getDestinationAccountType()}"></td>
+                                                            <td th:text="${transaction.getCustomerName()}"></td>
+                                                            <td th:text="${transaction.getScheduledPlanId()}"></td>
+                                                            <td th:text="${transaction.getFrequency()}"></td>
+                                                            <td th:text="${transaction.getNarration()}"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div th:replace="/common/common :: footer-strip">
+        </div>
+    </div>
+</div>
+<!-- Logout Modal-->
+<div th:replace="/common/usernav :: logoutModal"></div>
+</body>
+<footer th:replace="/common/common :: foot"> </footer>
+<script th:src="@{/assets/bootstrap-daterangepicker/moment.min.js}"></script>
+<script th:src="@{/assets/bootstrap-daterangepicker/daterangepicker.js}"></script>
+<script th:src="@{/assets/js/chart.js/Chart.min.js}"></script>
+<script th:src="@{/assets/js/chart.js/modules-chartjs.js}"></script>
+<script th:src="@{/assets/select2/js/select2.full.4.0.5.min.js}"></script>
+<script th:src="@{/assets/js/select-all-dropdown.js}"></script>
+<script th:src="@{/assets/js/forms-advanced-forms.js}"></script>
+merchant_service_api_header_key
+</html>

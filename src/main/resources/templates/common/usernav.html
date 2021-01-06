@@ -1,0 +1,90 @@
+<aside th:fragment="aside" id="sidebar-wrapper">
+    <div class="sidebar-brand">
+        <a th:href="@{/merchant/dashboard}">Merchant Portal</a>
+    </div>
+    <div class="sidebar-brand sidebar-brand-sm">
+        <a th:href="@{/merchant/dashboard}">MP</a>
+    </div>
+    <ul class="sidebar-menu">
+        <li class="menu-header">Interface</li>
+        <!--   <li class="nav-item dropdown active">
+             <a href="index.html" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+          </li> -->
+        <li class="nav-item dropdown active">
+            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Merchant Dashboard</span></a>
+            <ul class="dropdown-menu">
+                <li><a class="nav-link" th:href="@{/merchant/dashboard#data-analytics}">Data Analytics</a></li>
+                <li><a class="nav-link" th:href="@{/merchant/dashboard#predictive-analytics}">Predictive Analytics</a></li>
+                <li><a class="nav-link" th:href="@{/merchant/dashboard#predictive-publish}">Predictive Publish</a></li>
+                <li><a class="nav-link" th:href="@{/merchant/report/transaction-report}">Transaction Report</a></li>
+            </ul>
+        </li>
+        <!-- <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li> -->
+        <li class="nav-item dropdown">
+            <a href="/merchant/publish" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Merchant Publish</span></a>
+            <ul class="dropdown-menu">
+                <li><a class="nav-link" th:href="@{/merchant/publish#define}">Define Campaign Details</a></li>
+                <li><a class="nav-link" th:href="@{/merchant/publish#monitor}">Monitor Campaign</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Merchant Payments </span></a>
+            <ul class="dropdown-menu">
+                <li><a class="nav-link" href="blank.html">eNach</a></li>
+            </ul>
+        </li>
+        <li><a class="nav-link" href="blank.html"><i class="fa fa-info"></i> <span>About</span></a></li>
+    </ul>
+</aside>
+
+<nav th:fragment="nav" class="navbar navbar-expand-lg main-navbar">
+    <form class="form-inline mr-auto">
+        <ul class="navbar-nav mr-3">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+        </ul>
+        <div class="search-element">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
+            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
+    <ul class="navbar-nav navbar-right">
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                <img alt="image" th:src="@{/assets/img/avatar/avatar-1.png}" class="rounded-circle mr-1">
+                <div class="d-sm-none d-lg-inline-block">Hi, <span  th:text="${user_name}">></span> </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a href="features-profile.html" class="dropdown-item has-icon">
+                    <i class="far fa-user"></i> Profile
+                </a>
+                <a href="features-settings.html" class="dropdown-item has-icon">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item has-icon text-danger"  data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<!-- Logout Modal-->
+<div th:fragment="logoutModal" class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" th:href="@{/logout}">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>

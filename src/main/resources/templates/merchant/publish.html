@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/common/common :: head"> </head>
+
+<link rel="stylesheet" th:href="@{/assets/bootstrap-daterangepicker/daterangepicker.css}">
+
+<body>
+
+<div id="circle" class="loading">
+    <div class="loader loading">
+
+    </div>
+</div>
+
+<div id="app">
+    <div class="main-wrapper">
+        <div class="navbar-bg"></div>
+        <nav th:replace="/common/usernav :: nav"></nav>
+        <div class="main-sidebar">
+            <aside th:replace="/common/usernav :: aside"> </aside>
+        </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-header">
+                    <h1>Merchant Publish</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="define-campain-tab2" data-toggle="tab" href="#define-campain2" role="tab" aria-controls="define-campain" aria-selected="true"><strong>Define Campaign Details</strong></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="monitor-campain-tab2" data-toggle="tab" href="#monitor-campain2" role="tab" aria-controls="monitor-campain" aria-selected="false"><strong>Monitor Campaign</strong></a>
+                                    </li>
+                                    <!--<li class="nav-item">
+                                        <a class="nav-link" id="contact-tab2" data-toggle="tab" href="#predictive-publish" role="tab" aria-controls="contact" aria-selected="false"><strong>Predictive Analytics With Publish</strong></a>
+                                    </li>-->
+                                </ul>
+                                <div class="tab-content tab-bordered" id="merchantPublish">
+                                    <div class="tab-pane fade show active  media" id="define-campain2" role="tabpanel" aria-labelledby="define-campain-tab2">
+                                        <form class="needs-validation" novalidate="">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">Program IDs</label>
+                                                <div class="col-sm-9">
+                                                    <select name="program_ids" required class="form-control select2" id="pids" multiple="multiple">
+                                                        <option value="ZOKUDOPROGRAM">ZOKUDOPROGRAM</option>
+                                                        <option value="TESTCOPPG">TESTCOPPG</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select at least one program id.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--<div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">Transaction Channels*</label>
+                                                <div class="col-sm-9">
+                                                    <select name="terminal_channels" required class="form-control select2" multiple="">
+                                                        <option value="POS">POS</option>
+                                                        <option value="POS contactless">POS contactless</option>
+                                                        <option value="ECOM">ECOM</option>
+                                                        &lt;!&ndash;                                                        <option value="atm">atm</option>&ndash;&gt;
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select at least one transaction channel.
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">Duration</label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                <i class="fas fa-calendar"></i>
+                                                            </div>
+                                                        </div>
+                                                        <!--<input type="text" class="form-control daterange-cus">-->
+                                                        <input name="date_range" required type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--<div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">Time Period*</label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                <i class="fas fa-calendar"></i>
+                                                            </div>
+                                                        </div>
+                                                        <input name="date_range" required type="text" class="form-control daterange-cus">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please choose the date range.
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">TIDs*</label>
+                                                <div class="col-sm-9">
+                                                    <select name="terminal_ids" required class="form-control select2" id="tids" multiple="multiple">
+                                                    <!--<select class="form-control select2" multiple="">-->
+                                                        <option value="1020">1020</option>
+                                                        <option value="2001">2001</option>
+                                                        <option value="200">200</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select at least one terminal id.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">Location*</label>
+                                                <div class="col-sm-9">
+                                                    <select name="location" required class="form-control select2" multiple="">
+                                                        <option value="Mumbai">Mumbai</option>
+                                                        <option value="Ahmedabad">Ahmedabad</option>
+                                                        <option value="Bangaluru">Bangaluru</option>
+                                                        <option value="Chennai">Chennai</option>
+                                                        <option value="Delhi">Delhi</option>
+                                                        <option value="Hyderabad">Hyderabad</option>
+                                                        <option value="Jaipur">Jaipur</option>
+                                                        <option value="Kolkata">Kolkata</option>
+                                                        <option value="Nagpur">Nagpur</option>
+                                                        <option value="Pune">Pune</option>
+                                                        <option value="Surat">Surat</option>
+
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select at least one location.
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-sm-3">
+                                                   <label>Latitude</label>
+                                                   <input type="text" id="lat" class="form-control purchase-code" placeholder="0.000000">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                   <label>Longitude</label>
+                                                   <input type="text" id="long" class="form-control purchase-code" placeholder="0.000000">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                  <button type="button" class="btn btn-primary btn-lg mt-4" onclick="getLocation();" >
+                                                  <i class="fa fa-globe" aria-hidden="true"></i>
+                                                   Current Lat/Log</button>
+                                                </div> -->
+                                            </div>
+                                            <!--<div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">Transaction Status*</label>
+                                                <div class="col-sm-9">
+                                                    <select name="transaction_status" required class="form-control select2" multiple="">
+                                                        <option value="Approved">Approved</option>
+                                                        <option value="Declined">Declined</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select at least one transaction status.
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">CashBack</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" id="cashback" name="cashback" class="form-control purchase-code" placeholder="0">
+                                                </div>
+                                                <div class="col-sm-5 d-flex">
+                                                    <div class="form-check mr-3">
+                                                        <input class="form-check-input" type="radio" name="cashbackType" id="exampleRadios1" value="percent" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
+                                                            Percent
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="cashbackType" id="exampleRadios2" value="fixed">
+                                                        <label class="form-check-label" for="exampleRadios2">
+                                                            Flat
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label media-title">Push Notifications</label>
+                                                <div class="col-sm-9 d-flex">
+                                                    <div class="form-check mr-3">
+                                                        <input class="form-check-input" type="radio" name="notification" id="exampleRadios3" value="ENABLED" checked="">
+                                                        <label class="form-check-label" for="exampleRadios3">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="notification" id="exampleRadios4" value="DISABLED" >
+                                                        <label class="form-check-label" for="exampleRadios4">
+                                                            No
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="merchant_id"  th:value="${merchant_id}">
+                                            <input type="hidden" name="mid"  th:value="${mid}">
+                                            <div class="form-group text-center">
+                                                <button type="submit" class="btn btn-success btn-lg" tabindex="4">
+                                                    View Data
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <hr>
+                                        <div class="row" id="result">
+                                            <div class="col-12 col-md-6 col-lg-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4>Data</h4>
+                                                    </div>
+
+                                                    <!-- Start Code of Before View Data -->
+                                                    <div class="card-body">
+                                                        <ul class="list-unstyled list-unstyled-border">
+                                                            <li class="media">
+                                                                <div class="media-body d-flex row">
+                                                                    <h6 class="media-title col-sm-9 col-lg-9 col-sm-12">Total Customers Targetted</h6>
+                                                                    <div class="badge d-flex col-sm-3 col-lg-3 col-sm-12">
+                                                                        <i class="fas fa-users" style="padding: 3px;"></i>&nbsp;
+                                                                        <h6 class="media-title" id="total_customers_targetted"> </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="media">
+                                                                <div class="media-body d-flex row">
+                                                                    <h6 class="media-title col-sm-9 col-lg-9 col-sm-12">Total Customers Targetted (ZOKUDOPROGRAM)</h6>
+                                                                    <div class="badge d-flex col-sm-3 col-lg-3 col-sm-12">
+                                                                        <i class="fas fa-users" style="padding: 3px;"></i>&nbsp;
+                                                                        <h6 class="media-title" id="total_customers_targetted_program_1"> </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="media">
+                                                                <div class="media-body d-flex row">
+                                                                    <h6 class="media-title col-sm-9 col-lg-9 col-sm-12">Total Customers Targetted (TESTCOPPG)</h6>
+                                                                    <div class="badge d-flex col-sm-3 col-lg-3 col-sm-12">
+                                                                        <i class="fas fa-users" style="padding: 3px;"></i>&nbsp;
+                                                                        <h6 class="media-title" id="total_customers_targetted_program_2"> </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="media">
+                                                                <div class="media-body d-flex row">
+                                                                    <h6 class="media-title col-sm-9 col-lg-9 col-sm-12">Total Targetted Customers In Your City </h6>
+                                                                    <div class="badge d-flex col-sm-3 col-lg-3 col-sm-12">
+                                                                        <i class="fas fa-users" style="padding: 3px;"></i>&nbsp;
+                                                                        <h6 class="media-title" id="total_targetted_customers_in_your_city"> 0 </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                    <!-- End Code of Before View Data -->
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 col-lg-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4>Predictive Data</h4>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        COMING SOON...
+<!--                                                        <ul class="list-unstyled list-unstyled-border">-->
+<!--                                                            <li class="media">-->
+<!--                                                                <div class="media-body d-flex row">-->
+<!--                                                                    <h6 class="media-title col-sm-12 col-lg-6 col-12">Expected Customer Conversion</h6>-->
+<!--                                                                    <div class="badge d-flex col-sm-12 col-lg-6 col-12 break-text">-->
+<!--                                                                        <i class="fas fa-users" style="padding: 3px;"></i>&nbsp;-->
+<!--                                                                        <h6 class="media-title" id="expected_customer_conversion"> 35.9% (3,410) </h6>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="media">-->
+<!--                                                                <div class="media-body d-flex row">-->
+<!--                                                                    <h6 class="media-title col-sm-12 col-lg-6 col-12">Expected Customer Conversion (ZOKUDOPROGRAM)</h6>-->
+<!--                                                                    <div class="badge d-flex col-sm-12 col-lg-6 col-12 break-text">-->
+<!--                                                                        <i class="fas fa-users" style="padding: 3px;"></i>&nbsp;-->
+<!--                                                                        <h6 class="media-title" id="expected_customer_conversion_program_1"> 50.0% (1,400) </h6>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="media">-->
+<!--                                                                <div class="media-body d-flex row">-->
+<!--                                                                    <h6 class="media-title col-sm-12 col-lg-6 col-12">Expected Customer Conversion (TESTCOPPG)</h6>-->
+<!--                                                                    <div class="badge d-flex col-sm-12 col-lg-6 col-12 break-text">-->
+<!--                                                                        <i class="fas fa-users" style="padding: 3px;"></i>&nbsp;-->
+<!--                                                                        <h6 class="media-title" id="expected_customer_conversion_program_2"> 30.0% (2,010) </h6>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="media">-->
+<!--                                                                <div class="media-body d-flex row">-->
+<!--                                                                    <h6 class="media-title col-sm-12 col-lg-6 col-12">Expected Sales and Total Cost </h6>-->
+<!--                                                                    <div class="badge d-flex col-sm-12 col-lg-6 col-12 break-text">-->
+<!--                                                                        <i class="fas fa-rupee-sign" style="padding: 3px;"></i>&nbsp;-->
+<!--                                                                        <h6 class="media-title" id="expected_sales_and_total_cost"> 68,20,000/ 10,23,000 </h6>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </li>-->
+
+<!--                                                            <li class="media">-->
+<!--                                                                <div class="media-body d-flex row">-->
+<!--                                                                    <h6 class="media-title col-sm-12 col-lg-6 col-12">Expected Sales Increase </h6>-->
+<!--                                                                    <div class="badge d-flex col-sm-12 col-lg-6 col-12 break-text">-->
+<!--                                                                        <i class="fas fa-rupee-sign" style="padding: 3px;"></i>&nbsp;-->
+<!--                                                                        <h6 class="media-title" id="expected_sales_increase"> 88.40% (32,00,000) </h6>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--<div class="col-12 col-md-6 col-lg-6">
+                                                <div class="card" id="graph">
+                                                    <div class="card-header">
+                                                        <h4>Graph</h4>
+                                                    </div>
+                                                    <div class="card-body" id="chartContainer">
+                                                        <canvas id="myChart2"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                            <div class="col-12">
+                                                <hr>
+                                            </div>
+
+                                            <div class="row col-12">
+                                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <div class="form-check form-check-inline">
+                                                            <label class="col-form-label media-title text-danger">Do you want to target other high potential Customers</label>
+                                                            <input class="form-check-input ml-3" disabled type="checkbox" id="high_potential_cust" value="option1">
+                                                        </div>
+                                                        <div>
+                                                            <label class="col-form-label media-title text-danger"> COMING SOON....</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-4 col-lg-4 media">
+                                                    <div class="form-group">
+                                                        <label class="media-title">Campaign ID</label>
+                                                        <input type="text" readonly="" class="form-control" name="campaignNumber" th:value="*{campaignNumber}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-2 col-lg-2">
+                                                    <div class="form-group text-center mt-4">
+                                                        <button id="publish" type="submit" class="btn btn-success btn-lg" tabindex="4">
+                                                            Publish
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" id="result1">
+                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                <div class="target-potentials-block">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-6 col-md-6 col-sm-12 col-form-label media-title">Expected Conversion</label>
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 input-group">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">
+                                                                    %
+                                                                </div>
+                                                            </div>
+                                                            <input type="text" readonly="" class="form-control purchase-code" placeholder="42.3%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-6 col-md-6 col-sm-12 col-form-label media-title">Expected Sales and Total Cost</label>
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 input-group">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">
+                                                                    ₹
+                                                                </div>
+                                                            </div>
+                                                            <input type="text" readonly="" class="form-control purchase-code" placeholder="99,00,000/14,85,000">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-6 col-md-6 col-sm-12 col-form-label media-title">Expected Sales Increase</label>
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 input-group">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">
+                                                                    ₹
+                                                                </div>
+                                                            </div>
+                                                            <input type="text" readonly="" class="form-control purchase-code" placeholder="273.48% (62,80,000)">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="monitor-campain2" role="tabpanel" aria-labelledby="monitor-campain-tab2">
+                                        <h6>No Data</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div th:replace="/common/common :: footer-strip">
+        </div>
+    </div>
+</div>
+<!-- Logout Modal-->
+<div th:replace="/common/usernav :: logoutModal"></div>
+</body>
+<footer th:replace="/common/common :: foot"> </footer>
+<script th:src="@{/assets/bootstrap-daterangepicker/moment.min.js}"></script>
+<script th:src="@{/assets/bootstrap-daterangepicker/daterangepicker.js}"></script>
+<script th:src="@{/assets/js/chart.js/Chart.min.js}"></script>
+<script th:src="@{/assets/js/chart.js/modules-chartjs.js}"></script>
+<script th:src="@{/assets/select2/js/select2.full.4.0.5.min.js}"></script>
+<script th:src="@{/assets/js/select-all-dropdown.js}"></script>
+<script th:src="@{/assets/js/forms-advanced-forms.js}"></script>
+<script th:src="@{/assets/js/underscore-min.js}"></script>
+<!--<script th:src="@{/assets/js/pages/dashboard.js}"></script>-->
+<script th:src="@{/assets/js/pages/publish.js}"></script>
+</html>

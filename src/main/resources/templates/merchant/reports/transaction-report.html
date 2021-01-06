@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/common/common :: head"> </head>
+
+<link rel="stylesheet" th:href="@{/assets/bootstrap-daterangepicker/daterangepicker.css}">
+
+<body>
+
+<div id="circle" class="loading">
+    <div class="loader loading">
+
+    </div>
+</div>
+
+<div id="app">
+    <div class="main-wrapper">
+        <div class="navbar-bg"></div>
+        <nav th:replace="/common/usernav :: nav"></nav>
+        <div class="main-sidebar">
+            <aside th:replace="/common/usernav :: aside"> </aside>
+        </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                                   <li class="nav-item">
+                                        <a class="nav-link " id="home-tab2" data-toggle="tab" href="#data-analytics" role="tab" aria-controls="home" aria-selected="false"><strong>Data Analytics</strong></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab2" data-toggle="tab" href="#predictive-analytics" role="tab" aria-controls="profile" aria-selected="false"><strong>Predictive Analytics</strong></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-tab2" data-toggle="tab" href="#predictive-publish" role="tab" aria-controls="contact" aria-selected="false"><strong>Predictive Analytics With Publish</strong></a>
+                                    </li>
+                                    <li class="nav-item">
+                                       <!-- <a class="nav-link" th:href="@{/merchant/report/transaction-report}"><strong>Transaction Report</strong></a>-->
+                                        <!--<a class="nav-link" id="transaction-tab2" data-toggle="tab" href="@{/merchant/report/transaction-report}" role="tab" aria-controls="transaction" aria-selected="false"><strong>Transaction Report</strong></a>-->
+                                        <a class="nav-link active" id="transaction-tab2" data-toggle="tab" href="#transaction-report" role="tab" aria-controls="transaction" aria-selected="true"><strong>Transaction Report</strong></a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content tab-bordered" id="myTab3Content">
+
+                                    <div class="tab-pane fade" id="predictive-analytics" role="tabpanel" aria-labelledby="profile-tab2">
+                                        <h6>No Data</h6>
+                                    </div>
+                                    <div class="tab-pane fade" id="predictive-publish" role="tabpanel" aria-labelledby="contact-tab2">
+                                        <h6>No Data</h6>
+                                    </div>
+                                    <div class="tab-pane fade show active  media" id="transaction-report" role="tabpanel" aria-labelledby="transaction-tab2">
+                                        <div class="form-group text-center">
+                                            <div class="col-md-6">
+                                                <a th:href="@{/merchant/report/transaction-report/export}"
+                                                   class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right"><i
+                                                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                                                </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <!--<div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="alert alert-success" role="alert" th:if="${message}" th:utext="${message}"></div>
+                                                    </div>
+                                                </div>-->
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered dataTable" width="100%" cellspacing="0">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>CREATED AT</th>
+                                                            <th>UPDATED AT</th>
+                                                            <th>MERCHANT NAME</th>
+                                                            <th>MERCHANT ID</th>
+                                                            <th>PROGRAM ID</th>
+                                                            <th>CLIENT ID</th>
+                                                            <th>CUSTOMER HASH ID</th>
+                                                            <th>WALLETHASHID</th>
+                                                            <th>AMOUNT</th>
+                                                            <th>PROXY CARD NO</th>
+                                                            <th>TRANSACTION REF NO/th>
+                                                            <th>RETRIEVAL REF NO</th>
+                                                            <th>TRANSACTION TYPE</th>
+                                                            <th>COMMENTS</th>
+                                                            <th>TRANSACTION AMOUNT</th>
+                                                            <th>BILLING AMOUNT</th>
+                                                            <th>CASHBACK AMOUNT</th>
+                                                            <th>CURRENT BALANCE</th>
+                                                            <th>STATUS</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr th:each="transaction : ${transactionList}">
+                                                            <td th:text="${transaction.getCreatedAt()}"></td>
+                                                            <td th:text="${transaction.getUpdatedAt()}"></td>
+                                                            <td th:text="${transaction.getMerchantName()}"></td>
+                                                            <td th:text="${transaction.getMerchantId()}"></td>
+                                                            <td th:text="${transaction.getProgramId()}"></td>
+                                                            <td th:text="${transaction.getClientId()}"></td>
+                                                            <td th:text="${transaction.getCustomerHashId()}"></td>
+                                                            <td th:text="${transaction.getWalletWashId()}"></td>
+                                                            <td th:text="${transaction.getAmount()}"></td>
+                                                            <td th:text="${transaction.getProxyCardNo()}"></td>
+                                                            <td th:text="${transaction.getTransactionRefNo()}"></td>
+                                                            <td th:text="${transaction.getRetrievalRefNo()}"></td>
+                                                            <td th:text="${transaction.getTransactionType()}"></td>
+                                                            <td th:text="${transaction.getComments()}"></td>
+                                                            <td th:text="${transaction.getTransactionAmount()}"></td>
+                                                            <td th:text="${transaction.getBillingBmount()}"></td>
+                                                            <td th:text="${transaction.getCashbackBmount()}"></td>
+                                                            <td th:text="${transaction.getCurrentBalance()}"></td>
+                                                            <td th:text="${transaction.getStatus()}"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div th:replace="/common/common :: footer-strip">
+        </div>
+    </div>
+</div>
+<!-- Logout Modal-->
+<div th:replace="/common/usernav :: logoutModal"></div>
+</body>
+<footer th:replace="/common/common :: foot"></footer>
+<script th:src="@{/assets/js/common/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/assets/js/common/datatables/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/assets/css/dataTables.bootstrap4.min.css}"></script>
+<script>
+    $(document).ready(function() {
+        $('.dataTable').DataTable();
+    });
+</script>
+    </html>
